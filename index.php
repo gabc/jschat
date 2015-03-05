@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	require_once("action/IndexAction.php");
 
 	$action = new IndexAction();
@@ -9,21 +9,40 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8"> 
+		<script src="js/jquery.js"></script>
 	</head>
 	<body>
 		<?php
-			if (empty($action->error)) {
-				?>
+			if(empty($action->error)){
+		?>
 				<div>Clef : <?php echo $action->key; ?></div>
 				<div>Voir statut des usagers : <a href="http://apps-de-cours.com/web-chat/server/watch-eye.php" target="watcheye">Watch Eye</a></div>
-				<?php
+		<?php
 			}
 			else {
-				?>
+		?>
 				Erreur : <?php echo $action->error; ?>
-				<?php
+		<?php
 			}
 		?>
+		
+		<script>
+		$.ajax({
+			url: "action/AjaxAction.php",
+			type: "POST",
+			data: {
+			      key: "<?= $action->key ?>"
+			}
+		}).done( function(data) {
+			data = JSON.parse(data);
+			//console.log(JSON.parse(data));
+			for(var i = 0; i < data.length; i++) {
+				console.log(data[i]);
+			}
+		});
+		</script>
+
 		<ul>
 		<?php foreach($action->getMessage() as $foo){ ?>
 			<li><?= $foo["nomUsager"] . ":	" . $foo["message"] ?></li>
