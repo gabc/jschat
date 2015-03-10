@@ -30,11 +30,9 @@
 		<script>
 		$.ajax({
 			url: "action/AjaxAction.php",
-			type: "POST",
-			data: {
-			      key: "<?= $action->key ?>"
-			}
+			type: "POST"
 		}).done( function(data) {
+			console.log(data);
 			data = JSON.parse(data);
 			//console.log(JSON.parse(data));
 			for(var i = 0; i < data.length; i++) {
