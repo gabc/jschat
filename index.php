@@ -10,7 +10,6 @@
 	<head>
 		<meta charset="UTF-8"> 
 		<script src="js/jquery.js"></script>
-		<script src="js/javascript.js"></script>
 	</head>
 	<body>
 		<?php
@@ -26,11 +25,10 @@
 		<?php
 			}
 		?>
-
-		<ul id="convo">
-		</ul>
-
-		<input type="text" autofocus id="inputtext" />
-		<button id="btngo">go.</button>
+		<form action="index.php" method="post">
+			<input type="text" autofocus name="usr" />
+			<input type="password" name="pwd" />
+			<button id="ntnlogin">go.</button>
+		</form>
 	</body>
 </html>

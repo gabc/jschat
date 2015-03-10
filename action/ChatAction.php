@@ -10,7 +10,7 @@
 		public $soapClient;
 
 		public function __construct() {
-			parent::__construct(CommonAction::$VISIBILITY_MEMBER);
+			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
 			$this->soapClient = Connection::getConnection();
 		}
 		
@@ -18,13 +18,10 @@
 			$this->error = $this->soapClient->getError();
 			
 			if (empty($this->error)) {
-				$this->key = Connection::login();
 				
 				if ($this->soapClient->fault) {
 					$this->error = "(" . $this->soapClient->faultcode . ") " . $this->soapClient->faultstring;
 				} 
 			}
-
-			$_SESSION["clef"] = $this->key;
 		}
 	}

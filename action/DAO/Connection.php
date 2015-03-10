@@ -14,8 +14,9 @@
 			Connection::$connection = null;
 		}
 
-		public static function login() {
-			return Connection::$connection->call("connecter", array("nomUsager" => "gabc", "motDePasse" => md5("AAAaaa111")));
+		public static function login($usr, $mdp) {
+			var_dump($mdp);
+			return Connection::$connection->call("connecter", array("nomUsager" => $usr, "motDePasse" => md5($mdp)));
 		}
 
 		public static function logout() {
