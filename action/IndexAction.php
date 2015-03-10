@@ -24,7 +24,7 @@
 					$this->error = "(" . $this->soapClient->faultcode . ") " . $this->soapClient->faultstring;
 				} else {
 					$_SESSION["clef"] = $this->key;
-					//header('Location: ../chat.php'); 
+					//header('Location: ../chat.php'); // TODO: FIXME
 					echo "Yaye!";					
 				}
 			} else {
