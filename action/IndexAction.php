@@ -11,14 +11,14 @@
 
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
+			$this->soapClient = Connection::getConnection();
 		}
 		
 		protected function executeAction() {		
-			$this->soapClient = new nusoap_client('http://apps-de-cours.com/web-chat/server/services.php', false);
 			$this->error = $this->soapClient->getError();
 			
 			if (empty($this->error)) {
-				$this->key = $this->soapClient->call("connecter", array("nomUsager" => "gabc", "motDePasse" => md5("AAAaaa111")));
+				$this->key = Connection::login();
 				
 				if ($this->soapClient->fault) {
 					$this->error = "(" . $this->soapClient->faultcode . ") " . $this->soapClient->faultstring;
