@@ -23,18 +23,9 @@
 				} 
 			}
 
-			if (!isset($_SESSION["clef"])) {
-				$_SESSION["clef"] = $this->key;
-			}
-			if (!isset($_SESSION["client"])) {
-				$_SESSION["client"] = $this->soapClient;
-			}
-			if (isset($_GET["inputtext"])){
-				echo $_GET["inputtext"];
-				$this->soapClient->call("ecrireMessage", array("clef" => $this->key, "message" => $_GET["inputtext"]));
-			}
-			
-			echo $_SESSION["clef"];
+			$_SESSION["clef"] = $this->key;
+
+			$_SESSION["client"] = $this->soapClient;
 		}
 
 		public function getMessage() {
