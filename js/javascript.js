@@ -17,8 +17,12 @@ function recoitMessage () {
 		}).done( function(data) {
 			console.log(data);
 			data = JSON.parse(data);
+			var usr = "";
+			var mess = "";
 			for(var i = 0; i < data.length; i++) {
-				$("#convo").append("<li>" + data[i]["nomUsager"] + ": " + data[i]["message"] + "</li>");
+				usr = data[i]["nomUsager"] || "Inconnu";
+				mess = data[i]["message"] || "Message";
+				$("#convo").append("<li>" + usr + ": " + mess + "</li>");
 			}
 		});
 }
