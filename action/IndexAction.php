@@ -2,16 +2,18 @@
 	date_default_timezone_set('America/New_York');
 
 	require_once('action/lib/nusoap.php'); 
-
-	class IndexAction {
+	require_once("CommonAction.php");
+	
+	class IndexAction extends CommonAction {
 		public $key;
 		public $error;
 		public $soapClient;
 
 		public function __construct() {
+			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
 		}
 		
-		public function execute() {		
+		protected function executeAction() {		
 			$this->soapClient = new nusoap_client('http://apps-de-cours.com/web-chat/server/services.php', false);
 			$this->error = $this->soapClient->getError();
 			
@@ -26,9 +28,5 @@
 			$_SESSION["clef"] = $this->key;
 
 			$_SESSION["client"] = $this->soapClient;
-		}
-
-		public function getMessage() {
-			return $this->soapClient->call("lireMessages", array("clef" => $this->key));
 		}
 	}

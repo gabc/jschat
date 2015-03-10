@@ -1,8 +1,23 @@
 <?php
 	require_once("lib/nusoap.php");
 	require_once("DAO/ChatDAO.php");
-	session_start();
+	require_once("CommonAction.php");
 
-	date_default_timezone_set("America/New_York"); 
-	//$client = new nusoap_client('http://apps-de-cours.com/web-chat/server/services.php', false);
-	echo json_encode(ChatDAO::getMessages($_SESSION["client"], $_SESSION["clef"]));
+	class AjaxAction extends CommonAction {
+
+		public function __construct() {
+			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
+			date_default_timezone_set("America/New_York"); 
+		}
+
+		public $result;
+
+		protected function executeAction() {
+			if ($_POST["action"] === "get") {
+				$this->result = ChatDAO::getMessages($_SESSION["client"], $_SESSION["clef"]);
+			} elseif ($_POST["action"] === "send") {
+				ChatDAO::ecritMessage($_SESSION["client"], $_SESSION["clef"], $_POST["message"]);
+				$this->result = "";
+			}
+		}
+	}

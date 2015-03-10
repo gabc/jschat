@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require_once("action/IndexAction.php");
 
 	$action = new IndexAction();
@@ -30,7 +29,6 @@
 
 		<ul id="convo">
 		</ul>
-
 
 		<input type="text" autofocus id="inputtext" />
 		<button id="btngo">go.</button>

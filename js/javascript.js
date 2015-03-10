@@ -4,29 +4,31 @@ $(function () {
 });
 
 function tick () {
-	ajaxe();
+	recoitMessage();
 }
 
-function ajaxe () {
-	return $.ajax({
-				url: "action/AjaxAction.php",
-				type: "POST"
-			}).done( function(data) {
-				console.log(data);
-				data = JSON.parse(data);
-				//console.log(JSON.parse(data));
-				for(var i = 0; i < data.length; i++) {
-					$("#convo").append("<li>" + data[i]["nomUsager"] + ": " + data[i]["message"] + "</li>");
-				}
-			});
+function recoitMessage () {
+	$.ajax({
+			url: "action/ajax.php",
+			type: "POST",
+			data: {
+				action: "get"
+			}
+		}).done( function(data) {
+			console.log(data);
+			data = JSON.parse(data);
+			for(var i = 0; i < data.length; i++) {
+				$("#convo").append("<li>" + data[i]["nomUsager"] + ": " + data[i]["message"] + "</li>");
+			}
+		});
 }
 
 function envoieMessage () {
-	console.log($("#inputtext").val());
 	$.ajax({
-		url: "action/EnvoieMessage.php",
+		url: "action/ajax.php",
 		type: "POST",
 		data: {
+			action: "send",
 			message: $("#inputtext").val()
 		}
 	})
