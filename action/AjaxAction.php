@@ -4,19 +4,21 @@
 	require_once("CommonAction.php");
 
 	class AjaxAction extends CommonAction {
-
+		private $soapClient;
+		
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
 			date_default_timezone_set("America/New_York"); 
+			$this->soapClient = Connection::getConnection();
 		}
 
 		public $result;
 
 		protected function executeAction() {
 			if ($_POST["action"] === "get") {
-				$this->result = ChatDAO::getMessages($_SESSION["client"], $_SESSION["clef"]);
+				$this->result = ChatDAO::getMessages($this->soapClient, $_SESSION["clef"]);
 			} elseif ($_POST["action"] === "send") {
-				ChatDAO::ecritMessage($_SESSION["client"], $_SESSION["clef"], $_POST["message"]);
+				ChatDAO::ecritMessage($this->soapClient, $_SESSION["clef"], $_POST["message"]);
 				$this->result = "";
 			}
 		}

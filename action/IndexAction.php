@@ -26,7 +26,5 @@
 			}
 
 			$_SESSION["clef"] = $this->key;
-
-			$_SESSION["client"] = $this->soapClient;
 		}
 	}
