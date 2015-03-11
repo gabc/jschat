@@ -38,6 +38,8 @@ function envoieMessage () {
 			message: $("#inputtext").val()
 		}
 	})
-	$("#convo").append("<li>" + "gabc" + ": " + $("#inputtext").val() + "</li>");
+	var item = document.createElement("LI");
+	item.textContent = "gabc" + ": " + $("#inputtext").val();
+	$("#convo").append(item);
 	$("#inputtext").val("");
 }
