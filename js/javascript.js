@@ -22,7 +22,9 @@ function recoitMessage () {
 			for(var i = 0; i < data.length; i++) {
 				usr = data[i]["nomUsager"] || "Inconnu";
 				mess = data[i]["message"] || "Message";
-				$("#convo").append("<li>" + usr + ": " + mess + "</li>");
+				var item = document.createElement("LI");
+				item.textContent = usr + ": " + mess;
+				$("#convo").append(item);
 			}
 		});
 }
