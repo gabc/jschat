@@ -13,19 +13,6 @@
 		<script src="js/javascript.js"></script>
 	</head>
 	<body>
-		<?php
-			if(empty($action->error)){
-		?>
-				<div>Clef : <?php echo $action->key; ?></div>
-				<div>Voir statut des usagers : <a href="http://apps-de-cours.com/web-chat/server/watch-eye.php" target="watcheye">Watch Eye</a></div>
-		<?php
-			}
-			else {
-		?>
-				Erreur : <?php echo $action->error; ?>
-		<?php
-			}
-		?>
 
 		<ul id="convo">
 		</ul>
