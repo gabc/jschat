@@ -16,6 +16,10 @@
 		
 		protected function executeAction() {		
 			$this->error = $this->soapClient->getError();
+
+			if (!isset($_POST["usr"]) || !isset($_POST["pwd"])) {
+				return;
+			}
 			
 			if (empty($this->error)) {
 				$this->key = Connection::login($_POST["usr"], $_POST["pwd"]);
@@ -24,8 +28,8 @@
 					$this->error = "(" . $this->soapClient->faultcode . ") " . $this->soapClient->faultstring;
 				} else {
 					$_SESSION["clef"] = $this->key;
-					//header('Location: ../chat.php'); // TODO: FIXME
-					echo "Yaye!";					
+					header('Location: chat.php'); 
+					exit();
 				}
 			} else {
 				echo "WHhooops";
