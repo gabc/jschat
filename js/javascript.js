@@ -9,24 +9,22 @@ function tick () {
 
 function recoitMessage () {
 	$.ajax({
-			url: "action/ajax.php",
-			type: "POST",
-			data: {
-				action: "get"
-			}
-		}).done( function(data) {
-			console.log(data);
-			data = JSON.parse(data);
-			var usr = "";
-			var mess = "";
-			for(var i = 0; i < data.length; i++) {
-				usr = data[i]["nomUsager"] || "Inconnu";
-				mess = data[i]["message"] || "Message";
-				var item = document.createElement("LI");
-				item.textContent = usr + ": " + mess;
-				$("#convo").append(item);
-			}
-		});
+		url: "action/ajax.php",
+		type: "POST",
+		data: {
+			action: "get"
+		}
+	}).done( function(data) {
+		console.log(data);
+		data = JSON.parse(data);
+		var usr = "";
+		var mess = "";
+		for(var i = 0; i < data.length; i++) {
+			usr = data[i]["nomUsager"] || "Inconnu";
+			mess = data[i]["message"] || "Message";
+			$("#convo").append(createSaneLi(usr, mess));
+		}
+	});
 }
 
 function envoieMessage () {
@@ -38,8 +36,12 @@ function envoieMessage () {
 			message: $("#inputtext").val()
 		}
 	})
-	var item = document.createElement("LI");
-	item.textContent = "gabc" + ": " + $("#inputtext").val();
-	$("#convo").append(item);
+	$("#convo").append(createSaneLi("gabc", $("#inputtext").val()));
 	$("#inputtext").val("");
+}
+
+function createSaneLi (usr, mess) {
+	var item = document.createElement("LI");
+	item.textContent = usr + ": " + mess;
+	return item;
 }
