@@ -28,6 +28,7 @@
 					$this->error = "(" . $this->soapClient->faultcode . ") " . $this->soapClient->faultstring;
 				} else {
 					$_SESSION["clef"] = $this->key;
+					$_SESSION["theme"] = $_POST["theme"]; // really needed?
 					header('Location: chat.php'); 
 					exit();
 				}

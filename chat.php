@@ -11,9 +11,10 @@
 		<meta charset="UTF-8"> 
 		<script src="js/jquery.js"></script>
 		<script src="js/javascript.js"></script>
+		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>
 	</head>
 	<body>
-
+		<?= $_SESSION["theme"] ?>
 		<ul id="convo">
 		</ul>
 

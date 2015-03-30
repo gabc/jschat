@@ -25,7 +25,14 @@
 		<?php
 			}
 		?>
+
 		<form action="index.php" method="post">
+			<select name="theme">
+				<option value="retro">Retro look</option>
+				<option value="three">Musee des messages</option>
+				<option value="cream">Surprise</option>
+			</select>
+
 			<input type="text" autofocus name="usr" />
 			<input type="password" name="pwd" />
 			<button id="ntnlogin">go.</button>
