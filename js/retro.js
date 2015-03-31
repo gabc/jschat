@@ -57,6 +57,17 @@ function execcmd() {
 		cmd = cmd.match(/\/(.*)\//)[1];
 		input.val(cmd + input.val());
 		break;
+	case "n":
+		listeUser(function (data) {
+			var res = "";
+			data = JSON.parse(data);
+			for(var i = 0; i < data.length; i++) {
+				res += data[i] + ", ";
+			}
+			res = res.substring(0, res.length-2);
+			$("#convo").append(createSaneLi("mess", res));
+		});
+		break;
 	case "w":
 		envoieMessage();
 		break;
