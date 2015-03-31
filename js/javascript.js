@@ -44,3 +44,15 @@ function createSaneLi (usr, mess) {
 	item.textContent = usr + ": " + mess;
 	return item;
 }
+
+function listeUser (handle) {
+	$.ajax({
+		url: "action/ajax.php",
+		type: "POST",
+		data: {
+			action: "usrs"
+		}
+	}).done( function(data) {
+		handle(data);
+	});
+}
