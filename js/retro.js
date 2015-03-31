@@ -50,6 +50,9 @@ function execcmd() {
 		cmd = cmd.match(/\/(.*)\/c\/(.*)\//)[2];
 		input.val(input.val().replace(tmp, cmd));
 		break;
+	case "d":
+		input.val("");
+		break;
 	case "i":
 		cmd = cmd.match(/\/(.*)\//)[1];
 		input.val(cmd + input.val());
