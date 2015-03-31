@@ -15,7 +15,6 @@ function recoitMessage () {
 			action: "get"
 		}
 	}).done( function(data) {
-		console.log(data);
 		data = JSON.parse(data);
 		var usr = "";
 		var mess = "";
