@@ -54,4 +54,5 @@ function execcmd() {
 	default:
 		console.log(c + " wat");
 	}
+	$("#cmd").val("");
 }
