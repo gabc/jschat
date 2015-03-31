@@ -20,6 +20,8 @@
 			} elseif ($_POST["action"] === "send") {
 				ChatDAO::ecritMessage($this->soapClient, $_SESSION["clef"], $_POST["message"]);
 				$this->result = "";
+			} elseif ($_POST["action"] === "usrs") {
+				$this->result = ChatDAO::getUsers($this->soapClient, $_SESSION["clef"]);
 			}
 		}
 	}
