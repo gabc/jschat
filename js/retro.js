@@ -28,7 +28,7 @@ function execcmd() {
 	var c;
 
 	if (cmd.match(/^\//)) {
-		c = cmd.match(/\/(?:[a-zA-Z]*)\/([a-z])\/(?:.*)\//)[1];
+		c = cmd.split('/')[2];
 	} else {
 		c = cmd[0];
 	}
