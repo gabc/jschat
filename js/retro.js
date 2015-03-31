@@ -20,6 +20,12 @@ function init() {
 	$("#btngo").click(execcmd);
     
 	$("<input type='text' autofocus id='cmd' />").insertAfter($("#btngo"));
+
+	$("#cmd").keyup(function (e) {
+		if (e.keyCode == 13) {
+			execcmd();
+		}
+	});
 }
 
 function execcmd() {
