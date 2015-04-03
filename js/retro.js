@@ -68,6 +68,10 @@ function execcmd() {
 			$("#convo").append(createSaneLi("mess", res));
 		});
 		break;
+	case "q":
+		quitte();
+		/* NOT REACHED */
+		break;
 	case "w":
 		envoieMessage();
 		break;
