@@ -12,4 +12,8 @@
 		public static function getUsers($client, $clef) {
 			return $client->call("listeDesMembres", array("clef" => $clef));
 		}
+
+		public static function deconnection($client, $clef) {
+			return $client->call("deconnecter", array("clef" => $clef));
+		}
 	}

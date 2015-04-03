@@ -22,6 +22,9 @@
 				$this->result = "";
 			} elseif ($_POST["action"] === "usrs") {
 				$this->result = ChatDAO::getUsers($this->soapClient, $_SESSION["clef"]);
+			} elseif ($_POST["action"] === "quit") {
+				ChatDAO::deconnection($this->soapclient, $_SESSION["clef"]);
+				$this->result = 0;
 			}
 		}
 	}

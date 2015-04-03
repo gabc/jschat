@@ -56,3 +56,15 @@ function listeUser (handle) {
 		handle(data);
 	});
 }
+
+function quitte () {
+	$.ajax({
+		url: "action/ajax.php",
+		type: "POST",
+		data: {
+			action: "quit"
+		}
+	}).done( function(data) {
+		document.location.href = "index.php";
+	});
+}
