@@ -15,13 +15,17 @@ function recoitMessage () {
 			action: "get"
 		}
 	}).done( function(data) {
-		data = JSON.parse(data);
-		var usr = "";
-		var mess = "";
-		for(var i = 0; i < data.length; i++) {
-			usr = data[i]["nomUsager"] || "Inconnu";
-			mess = data[i]["message"] || "Message";
-			$("#convo").append(createSaneLi(usr, mess));
+		if (typeof recoitHook !== 'undefined')
+			recoitHook(data);
+		else {
+			data = JSON.parse(data);
+			var usr = "";
+			var mess = "";
+			for(var i = 0; i < data.length; i++) {
+				usr = data[i]["nomUsager"] || "Inconnu";
+				mess = data[i]["message"] || "Message";
+				$("#convo").append(createSaneLi(usr, mess));
+			}
 		}
 	});
 }
@@ -35,8 +39,12 @@ function envoieMessage () {
 			message: $("#inputtext").val()
 		}
 	})
-	$("#convo").append(createSaneLi("gabc", $("#inputtext").val()));
-	$("#inputtext").val("");
+	if (typeof envoitHook !== 'undefined')
+		envoitHook($("#inputtext").val());
+	else {
+		$("#convo").append(createSaneLi("gabc", $("#inputtext").val()));
+		$("#inputtext").val("");
+	}
 }
 
 function createSaneLi (usr, mess) {
@@ -67,4 +75,8 @@ function quitte () {
 	}).done( function(data) {
 		document.location.href = "index.php";
 	});
+}
+
+function rand (bot, up) {
+	return  Math.floor((Math.random() * up) + bot); 
 }
