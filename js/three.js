@@ -1,6 +1,9 @@
 $(init);
 
 var offsetncube = 0;
+var listeMess = [];
+var maxmess = 5;
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 40, window.innerWidth/window.innerHeight, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer();
@@ -73,6 +76,16 @@ function newtext (txt) {
 	cube.position.y = 1.5;
 	cube.position.z = -offsetncube;
 	offsetncube += 20;
+	listeMess.push(cube);
+
+	if (listeMess.length > maxmess) {
+		var n = listeMess.length - maxmess;
+		for (var i = 0; i < n; i++) {
+			scene.remove(listeMess[0]);
+			listeMess.splice(0,1);
+		}
+	}
+	
 	scene.add( cube );
 }
 
