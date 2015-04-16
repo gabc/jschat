@@ -1,82 +1,57 @@
 $(init);
 
-var offsetncube = 0;
-var listeMess = [];
-var maxmess = 5;
+var offsetncube;
+var listeMess;
+var maxmess;
 
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 40, window.innerWidth/window.innerHeight, 0.1, 1000 );
-var renderer = new THREE.WebGLRenderer();
+var scene;
+var camera;
+var renderer;
 
-var geometry = new THREE.PlaneGeometry( 5, 20, 32 );
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-var plane = new THREE.Mesh( geometry, material );
-var controls = new THREE.FirstPersonControls(camera, renderer.domElement);
+var clock;
+var geometry;
+var material;
+var plane;
+var controls;
 
-var render = function () {
-	controls.update();
-	console.log("ouais");
+function render () {
+	var delta = clock.getDelta();
+	controls.update(delta);
 	renderer.render(scene, camera);
-	requestAnimationFrame( render );
 };
 
+function initvar () {
+	offsetncube = 0;
+	listeMess = [];
+	maxmess = 5;
+
+	scene = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera( 80, window.innerWidth/window.innerHeight, 0.1, 1000 );
+	renderer = new THREE.WebGLRenderer();
+
+	geometry = new THREE.PlaneGeometry( 5, 20, 32 );
+	material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+	plane = new THREE.Mesh( geometry, material );
+	controls = new THREE.FirstPersonControls(camera);
+
+	camera.position.y = 3;
+	controls.movementSpeed = 10;
+	controls.lookSpeed = 0.075;
+	controls.noFly = false;
+	controls.lookVertical = true;
+
+	clock = new THREE.Clock();
+}
+
 function init () {
+	initvar();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 	plane.rotation.x = Math.PI /2;
 	scene.add( plane );
-	controls.mouvementSpeed = 70;
-	controls.lookSpeed = 0.5;
-	controls.noFly = true;
-	controls.lookVertical = false;
-	camera.position.z = 5;
-	camera.position.y = 2;
+	setInterval(render, 60);
 	render();
 }
-
-// $(document).bind('keydown', function(e) {
-// 	if (e.key == 'a') {
-// 		var y = camera.rotation.y;
-// 		camera.position.z += Math.sin(y);
-// 		camera.position.x -= Math.cos(y);
-// 	}
-// 	if (e.key == 'd') {
-// 		var y = camera.rotation.y;
-// 		camera.position.z -= Math.sin(y);
-// 		camera.position.x += Math.cos(y);
-// 	}
-	
-// 	if (e.key == 's') {
-// 		var y = camera.rotation.y;
-// 		camera.position.z += Math.cos(y);
-// 		camera.position.x += Math.sin(y);
-// 	}
-// 	if (e.key == 'w') {
-// 		var y = camera.rotation.y;
-// 		camera.position.z -= Math.cos(y);
-// 		camera.position.x -= Math.sin(y);
-// 	}
-	
-	
-// 	if (e.key == '4') {
-// 		camera.rotation.y += 0.1;
-// 	}
-// 	if (e.key == '6') {
-// 		camera.rotation.y -= 0.1;
-// 	}
-	
-// 	if (e.key == '8') {
-// 		camera.rotation.x += 0.1; 
-// 	}
-// 	if (e.key == '2') {
-// 		camera.rotation.x -= 0.1;
-// 	}
-
-// 	if (e.key == 'f') {
-// 		newtext("Texte!");
-// 	}
-// })
-;    
 
 function newtext (txt) {
 	var geometry = new THREE.TextGeometry(txt, { face: "helvetiker", size: 1.0, height: 0.1} );
