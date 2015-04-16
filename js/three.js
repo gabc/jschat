@@ -41,6 +41,7 @@ function initvar () {
 	controls.lookVertical = true;
 
 	clock = new THREE.Clock();
+	$(document).keyup(keyboardmanager);
 }
 
 function init () {
@@ -51,6 +52,34 @@ function init () {
 	scene.add( plane );
 	setInterval(render, 60);
 	render();
+}
+
+function showoption () {
+	console.log("showoption");
+}
+
+function textinsert () {
+	console.log("textinsert");
+}
+
+function fire () {
+	console.log("Pew pew");
+}
+
+function keyboardmanager (event) {
+	var key = event.key;
+	switch (key) {
+	case 'o':
+		showoption();
+		break;
+	case 't':
+		textinsert();
+		break;
+	case ' ':	// Space..?
+		fire();
+		break;
+
+	}
 }
 
 function newtext (txt) {
