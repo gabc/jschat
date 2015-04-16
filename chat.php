@@ -20,10 +20,12 @@
 	</head>
 	<body>
 		<?= $_SESSION["theme"] ?>
+		<?php if ($_SESSION["theme"] !== "three") {?>
 		<ul id="convo">
 		</ul>
-
+		
 		<input type="text" autofocus id="inputtext" />
 		<button id="btngo">go.</button>
+		<?php }?>
 	</body>
 </html>
