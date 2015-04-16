@@ -30,19 +30,19 @@ function recoitMessage () {
 	});
 }
 
-function envoieMessage () {
+function envoieMessage (opttxt) {
 	$.ajax({
 		url: "action/ajax.php",
 		type: "POST",
 		data: {
 			action: "send",
-			message: $("#inputtext").val()
+			message: opttxt ? opttxt : $("#inputtext").val()
 		}
 	})
 	if (typeof envoitHook !== 'undefined')
-		envoitHook($("#inputtext").val());
+		envoitHook(opttxt ? opttxt : $("#inputtext").val());
 	else {
-		$("#convo").append(createSaneLi("gabc", $("#inputtext").val()));
+		$("#convo").append(createSaneLi("gabc", opttxt ? opttxt : $("#inputtext").val()));
 		$("#inputtext").val("");
 	}
 }
