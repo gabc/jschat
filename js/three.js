@@ -59,7 +59,7 @@ function showoption () {
 }
 
 function textinsert () {
-	console.log("textinsert");
+	envoieMessage(prompt());
 }
 
 function fire () {
