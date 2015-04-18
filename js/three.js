@@ -16,6 +16,7 @@ var controls;
 
 var BREAKRATE;
 var ACCELRATE;
+var SIDERATE;
 
 function render () {
 	var delta = clock.getDelta();
@@ -26,7 +27,8 @@ function render () {
 function initvar () {
 	BREAKRATE = 0.05;
 	ACCELRATE = 0.1;
-
+	SIDERATE = ACCELRATE;
+	
 	offsetncube = 0;
 	listeMess = [];
 	maxmess = 5;
@@ -41,7 +43,6 @@ function initvar () {
 	controls = new THREE.FirstPersonControls(camera);
 
 	camera.position.y = 3;
-	controls.movementSpeed = 0;
 	controls.lookSpeed = 0.075;
 	controls.noFly = false;
 	controls.lookVertical = true;
@@ -74,16 +75,28 @@ function fire () {
 }
 
 function accelerate () {
-	if (controls.movementSpeed < 20)
-		controls.movementSpeed += ACCELRATE;
+	if (controls.forwardSpeed < 20)
+		controls.forwardSpeed += ACCELRATE;
 }
 
 function deccelerate () {
-	controls.movementSpeed -= BREAKRATE;
+	if (controls.forwardSpeed > 0)
+		controls.forwardSpeed -= BREAKRATE;
+}
+
+function leftAccel () {
+	if (controls.sideSpeed < 20)
+		controls.sideSpeed += SIDERATE;
+}
+
+function rightAccel () {
+	if (controls.sideSpeed > -20)
+		controls.sideSpeed -= SIDERATE;
 }
 
 function fullstop () {
-	controls.movementSpeed = 0;
+	controls.sideSpeed = 0;
+	controls.forwardSpeed = 0;
 }
 
 function keyboarddown (event) {
@@ -94,6 +107,12 @@ function keyboarddown (event) {
 		break;
 	case 's':
 		deccelerate();
+		break;
+	case 'a':
+		leftAccel();
+		break;
+	case 'd':
+		rightAccel();
 		break;
 	}
 }

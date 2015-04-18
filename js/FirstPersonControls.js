@@ -11,7 +11,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 
-	this.movementSpeed = 1.0;
+	this.forwardSpeed = 0;
+	this.sideSpeed = 0;
 	this.lookSpeed = 0.005;
 
 	this.noFly = false;
@@ -189,8 +190,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 };
 
-FirstPersonControls.prototype.update = function( delta ) {
+THREE.FirstPersonControls.prototype.update = function( delta ) {
 	var actualMoveSpeed = 0;
+	var actualSideSpeed = 0;
+	var realActualMoveSpeed = 0; // For realz dis time
 	if ( !this.freeze ) {
 		if ( this.heightSpeed ) {
 			var y = THREE.Math.clamp( this.object.position.y, this.heightMin, this.heightMax );
@@ -200,18 +203,11 @@ FirstPersonControls.prototype.update = function( delta ) {
 			this.autoSpeedFactor = 0.0;
 		}
 
-		actualMoveSpeed = delta * this.movementSpeed;
-
-		if ( this.moveForward || ( this.autoForward && !this.moveBackward ) )
-			this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) );
-
-		if ( this.moveBackward )
-			this.object.translateZ( actualMoveSpeed );
-
-		if ( this.moveLeft )
-			this.object.translateX( - actualMoveSpeed );
-		if ( this.moveRight )
-			this.object.translateX( actualMoveSpeed );
+		actualMoveSpeed = delta * this.forwardSpeed;
+		actualSideSpeed = delta * this.sideSpeed;
+		
+		this.object.translateZ(-actualMoveSpeed);
+		this.object.translateX(-actualSideSpeed);
 
 		if ( this.moveUp )
 			this.object.translateY( actualMoveSpeed );
