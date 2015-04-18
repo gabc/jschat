@@ -14,6 +14,9 @@ var material;
 var plane;
 var controls;
 
+var BREAKRATE;
+var ACCELRATE;
+
 function render () {
 	var delta = clock.getDelta();
 	controls.update(delta);
@@ -21,6 +24,9 @@ function render () {
 };
 
 function initvar () {
+	BREAKRATE = 0.05;
+	ACCELRATE = 0.1;
+
 	offsetncube = 0;
 	listeMess = [];
 	maxmess = 5;
@@ -35,13 +41,14 @@ function initvar () {
 	controls = new THREE.FirstPersonControls(camera);
 
 	camera.position.y = 3;
-	controls.movementSpeed = 10;
+	controls.movementSpeed = 0;
 	controls.lookSpeed = 0.075;
 	controls.noFly = false;
 	controls.lookVertical = true;
 
 	clock = new THREE.Clock();
-	$(document).keyup(keyboardmanager);
+	$(document).keyup(keyboardup);
+	$(document).keydown(keyboarddown);
 }
 
 function init () {
@@ -66,7 +73,32 @@ function fire () {
 	console.log("Pew pew");
 }
 
-function keyboardmanager (event) {
+function accelerate () {
+	if (controls.movementSpeed < 20)
+		controls.movementSpeed += ACCELRATE;
+}
+
+function deccelerate () {
+	controls.movementSpeed -= BREAKRATE;
+}
+
+function fullstop () {
+	controls.movementSpeed = 0;
+}
+
+function keyboarddown (event) {
+	var key = event.key;
+	switch (key) {
+	case 'w':
+		accelerate();
+		break;
+	case 's':
+		deccelerate();
+		break;
+	}
+}
+
+function keyboardup (event) {
 	var key = event.key;
 	switch (key) {
 	case 'o':
@@ -78,7 +110,12 @@ function keyboardmanager (event) {
 	case ' ':	// Space..?
 		fire();
 		break;
-
+	case 'x':
+		fullstop();
+		break;
+	case 'f':
+		console.log('f');
+		break;
 	}
 }
 
