@@ -68,7 +68,9 @@ function showoption () {
 }
 
 function textinsert () {
-	envoieMessage(prompt());
+	$(".textin").css("display", "block");
+	$(document).off("keyup");
+	$(document).off("keydown");
 }
 
 function fire () {
@@ -163,6 +165,9 @@ function newtext (txt) {
 
 var envoitHook = function (data) {
 	newtext("gabc: " + data);
+	$(".textin").css("display", "none");
+	$(document).keyup(keyboardup);
+	$(document).keydown(keyboarddown);
 };
 
 var recoitHook = function (data) {

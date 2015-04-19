@@ -1,14 +1,14 @@
 <?php
-	require_once("action/ChatAction.php");
+	 require_once("action/ChatAction.php");
 
-	$action = new ChatAction();
-	$action->execute();
+	 $action = new ChatAction();
+	 $action->execute();
 
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8"> 
+		<meta charset="UTF-8">
 		<script src="js/jquery.js"></script>
 		<script src="js/javascript.js"></script>
 		<?php if ($_SESSION["theme"] === "three") { ?>
@@ -22,11 +22,12 @@
 	</head>
 	<body>
 		<?php if ($_SESSION["theme"] !== "three") {?>
-			<ul id="convo">
-			</ul>
-		
-			<input type="text" autofocus id="inputtext" />
-			<button id="btngo">go.</button>
+		<ul id="convo">
+		</ul>
 		<?php }?>
+
+		<form class="textin" action="#" onsubmit="envoieMessage(this.text)">
+			<input type="text" autofocus id="inputtext" />
+		</form>
 	</body>
 </html>
