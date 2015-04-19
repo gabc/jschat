@@ -15,6 +15,8 @@
 		<script src="js/three.min.js"></script>
 		<script src="http://mrdoob.github.com/three.js/examples/fonts/helvetiker_regular.typeface.js"></script>
 		<script src="js/FirstPersonControls.js"></script>
+		<script src="js/viewportSize-min.js"></script>
+		<link rel="stylesheet" href="css/three.css">
 		<?php } ?>
 		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>
 	</head>
