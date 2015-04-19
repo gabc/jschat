@@ -16,10 +16,8 @@ function init() {
 	input = $("#inputtext");
 	
 	$("body").css(bodyStyle);
-	$("#btngo").unbind("click");
-	$("#btngo").click(execcmd);
     
-	$("<input type='text' autofocus id='cmd' />").insertAfter($("#btngo"));
+	$("<input type='text' autofocus id='cmd' />").insertAfter($(".textin"));
 
 	$("#cmd").keyup(function (e) {
 		if (e.keyCode == 13) {
