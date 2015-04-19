@@ -19,13 +19,12 @@
 		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>
 	</head>
 	<body>
-		<?= $_SESSION["theme"] ?>
 		<?php if ($_SESSION["theme"] !== "three") {?>
-		<ul id="convo">
-		</ul>
+			<ul id="convo">
+			</ul>
 		
-		<input type="text" autofocus id="inputtext" />
-		<button id="btngo">go.</button>
+			<input type="text" autofocus id="inputtext" />
+			<button id="btngo">go.</button>
 		<?php }?>
 	</body>
 </html>
