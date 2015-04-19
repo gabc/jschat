@@ -34,7 +34,7 @@ function initvar () {
 	maxmess = 5;
 
 	scene = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera( 80, window.innerWidth/window.innerHeight, 0.1, 1000 );
+	camera = new THREE.PerspectiveCamera( 80, viewportSize.getWidth()/viewportSize.getHeight(), 0.1, 1000 );
 	renderer = new THREE.WebGLRenderer();
 
 	geometry = new THREE.PlaneGeometry( 5, 20, 32 );
@@ -54,11 +54,12 @@ function initvar () {
 
 function init () {
 	initvar();
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize(viewportSize.getWidth(), viewportSize.getHeight());
 	document.body.appendChild( renderer.domElement );
 	plane.rotation.x = Math.PI /2;
 	scene.add( plane );
 	setInterval(render, 60);
+	document.documentElement.style.overflow = 'hidden';
 	render();
 }
 
