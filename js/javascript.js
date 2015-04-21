@@ -9,7 +9,7 @@ function tick () {
 
 function recoitMessage () {
 	$.ajax({
-		url: "action/ajax.php",
+		url: "ajax.php",
 		type: "POST",
 		data: {
 			action: "get"
@@ -32,7 +32,7 @@ function recoitMessage () {
 
 function envoieMessage (opttxt) {
 	$.ajax({
-		url: "action/ajax.php",
+		url: "ajax.php",
 		type: "POST",
 		data: {
 			action: "send",
@@ -55,7 +55,7 @@ function createSaneLi (usr, mess) {
 
 function listeUser (handle) {
 	$.ajax({
-		url: "action/ajax.php",
+		url: "ajax.php",
 		type: "POST",
 		data: {
 			action: "usrs"
@@ -67,7 +67,7 @@ function listeUser (handle) {
 
 function quitte () {
 	$.ajax({
-		url: "action/ajax.php",
+		url: "ajax.php",
 		type: "POST",
 		data: {
 			action: "quit"
