@@ -25,7 +25,7 @@
 		<ul id="convo">
 		</ul>
 		<?php }?>
-
+              <img src="img/board.png" style="position:absolute">
 		<form class="textin" action="#" onsubmit="envoieMessage(this.text)">
 			<input type="text" autofocus id="inputtext" />
 		</form>
