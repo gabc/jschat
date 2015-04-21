@@ -1,5 +1,5 @@
 <?php
-	require_once("AjaxAction.php");
+	require_once("action/AjaxAction.php");
 
 	$action = new AjaxAction();
 	$action->execute();

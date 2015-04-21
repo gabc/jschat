@@ -171,7 +171,11 @@ var envoitHook = function (data) {
 };
 
 var recoitHook = function (data) {
-	data = JSON.parse(data);
+	try {
+		data = JSON.parse(data);
+	} catch (e) {
+		console.log(data);
+	}
 	var usr = "";
 	var mess = "";
 	for(var i = 0; i < data.length; i++) {
