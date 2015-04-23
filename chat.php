@@ -16,16 +16,17 @@
 		<script src="http://mrdoob.github.com/three.js/examples/fonts/helvetiker_regular.typeface.js"></script>
 		<script src="js/FirstPersonControls.js"></script>
 		<script src="js/viewportSize-min.js"></script>
-		<link rel="stylesheet" href="css/three.css">
 		<?php } ?>
+		<link rel="stylesheet" href="css/<?= $_SESSION["theme"] ?>.css">
 		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>
 	</head>
 	<body>
 		<?php if ($_SESSION["theme"] !== "three") {?>
 		<ul id="convo">
 		</ul>
-		<?php }?>
-              <img src="img/board.png" style="position:absolute">
+		<?php } else {?>
+		<img src="img/board.png">
+		<?php } ?>
 		<form class="textin" action="#" onsubmit="envoieMessage(this.text)">
 			<input type="text" autofocus id="inputtext" />
 		</form>

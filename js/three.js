@@ -60,6 +60,8 @@ function init () {
 	scene.add( plane );
 	setInterval(render, 60);
 	document.documentElement.style.overflow = 'hidden';
+	$("canvas").css("width", "800px");
+	$("canvas").css("height", "600px");
 	render();
 }
 
