@@ -26,6 +26,18 @@ function init() {
 	});
 }
 
+recoitHook = function (data) {
+	data = JSON.parse(data);
+	var usr = "";
+	var mess = "";
+	for(var i = 0; i < data.length; i++) {
+		usr = data[i]["nomUsager"] || "Inconnu";
+		mess = data[i]["message"] || "Message";
+		$("#convo").append(createSaneLi(usr, mess));
+	}
+	$("#divconv").scrollTop($("#divconv")[0].scrollHeight);
+}
+
 function execcmd() {
 	cmd = $("#cmd").val();
 	var tmp;

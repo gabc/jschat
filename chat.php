@@ -22,8 +22,10 @@
 	</head>
 	<body>
 		<?php if ($_SESSION["theme"] !== "three") {?>
-		<ul id="convo">
-		</ul>
+		<div id="divconv">
+			<ul id="convo">
+			</ul>
+		</div>
 		<?php } else {?>
 		<img src="img/board.png">
 		<?php } ?>

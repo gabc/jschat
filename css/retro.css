@@ -1,0 +1,19 @@
+@font-face {
+    font-family: unifont;
+    src: url("../font/unifont.ttf");
+}
+
+* {
+    font-family: unifont;
+}
+
+div {
+    height: 25em;
+    width: 80ex;
+    overflow: scroll;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+}
