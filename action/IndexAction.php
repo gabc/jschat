@@ -29,6 +29,7 @@
 				} else {
 					$_SESSION["clef"] = $this->key;
 					$_SESSION["theme"] = $_POST["theme"]; // really needed?
+                    $_SESSION["usr"] = $_POST["usr"];
 					header('Location: chat.php'); 
 					exit();
 				}

@@ -32,8 +32,8 @@
 				<option value="three">Musee des messages</option>
 				<option value="cream">Surprise</option>
 			</select>
-
-			<input type="text" autofocus name="usr" />
+			
+			<input type="text" autofocus name="usr" value="<?php if(isset($_SESSION['usr'])){ echo $_SESSION['usr'];} ?>"/>
 			<input type="password" name="pwd" />
 			<button id="ntnlogin">go.</button>
 		</form>
