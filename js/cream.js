@@ -7,10 +7,11 @@ var canevas;
 function init () {
 	chatInterval = setInterval(randomLi, 1000);
 	// nameInterval = setInterval(randomName, 1000);
-	canevas = $("<canvas/>, {'id': 'canevas'}").width(200).height(200);
-	$("body").append(canevas);
-	// canevas.css("z-index", -1);
-
+	canevas = $("<canvas/>, {'id': 'canevas'}").width(window.innerWidth).height(window.innerHeight);
+    	$("body").append(canevas);
+	canevas.css("z-index", -1);
+	canevas.css("position", "absolute");
+	canevas.css("top", 0);
 }
 
 function randomLi () {
@@ -29,12 +30,24 @@ recoitHook = function (data) {
 		$("#convo").append(createSaneLi(usr, mess));
 		drawRandomShit(mess);
 	}
-}
+};
+
+envoitHook = function (txt) {
+	$("#convo").append(createSaneLi("gabc", txt));
+	drawRandomShit($("#inputtext").val());
+	$("#inputtext").val("");
+};
 
 function drawRandomShit (txt) {
 	var ctx = $("canvas")[0].getContext("2d");
-	var col = getRandomColor();
-	ctx.fillStyle = col;
-	console.log(col);
-	ctx.fillRect(0, 0, 100, 100);
+	var col;
+	var x, y;
+	for (var i = 0; i < txt.length/2; i++) {
+		x = window.innerWidth;
+		y = window.innerHeight;
+		col = getRandomColor();
+		ctx.fillStyle = col;
+		console.log(x, y);
+		ctx.fillRect(rand(0, x/4), 0, rand(0, x/2), rand(0, y/2));
+	}
 }

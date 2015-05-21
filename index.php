@@ -25,7 +25,6 @@
 		<?php
 			}
 		?>
-
 		<form action="index.php" method="post">
 			<select name="theme">
 				<option value="retro">Retro look</option>
@@ -36,6 +35,7 @@
 			<input type="text" autofocus name="usr" value="<?php if(isset($_SESSION['usr'])){ echo $_SESSION['usr'];} ?>"/>
 			<input type="password" name="pwd" />
 			<button id="ntnlogin">go.</button>
+			<a href="inscription.php">S'inscrire</a>
 		</form>
 	</body>
 </html>

@@ -15,11 +15,18 @@
 		}
 
 		public static function login($usr, $mdp) {
-			var_dump($mdp);
 			return Connection::$connection->call("connecter", array("nomUsager" => $usr, "motDePasse" => md5($mdp)));
 		}
 
 		public static function logout() {
 			return Connection::$connection->call("deconnecter", array("clef" => $_SESSION["clef"]));
 		}
+
+        public static function singin($mat, $prenom, $nom, $usr, $mdp, $phrase) {
+            return Connection::$connection->call("enregistrer", array("nomUsager" => $usr
+                                                                      , "motDePasse" => md5($mdp)
+                                                                      , "prenom" => $prenom
+                                                                      , "nom" => $nom
+                                                                      , "texteBienvenue" => $phrase));
+        }
 	}

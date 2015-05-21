@@ -1,5 +1,5 @@
 $(function () {
-	setInterval(tick, 7000);
+	setInterval(tick, 1200);
 	$("#btngo").click(envoieMessage);
 });
 

@@ -11,7 +11,6 @@ var cmd; /* La string de commande */
 var input; /* Le truc contenant l'objet d'envoit */
 
 function init() {
-	/* Y'a mieux? */
 	convo = $("#convo");
 	input = $("#inputtext");
 	
