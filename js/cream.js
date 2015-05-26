@@ -14,17 +14,27 @@ function init () {
 	canevas.css("z-index", -1);
 	canevas.css("position", "absolute");
 	canevas.css("top", 0);
+	canevas.css("left", 0);
 }
 
 function randomLi () {
 	var li = rand(1, $("#convo li").length);
 	li = $("#convo li:nth-child(" + li + ")");
-	// li.css("filter", "blur(1px)");
 	return li;
 }
 
 function getBlur (thing) {
 	return thing.css("filter").match(/\d+/);
+}
+
+function blur (thing, amount) {
+	thing.css({'-webkit-filter' : 'blur('+amount+'px)',
+		  'filter' : 'blur('+amount+'px)'})
+}
+
+function saturate (thing, amount) {
+	thing.css({'-webkit-filter' : 'saturate('+amount+'px)',
+		   'filter' : 'saturate('+amount+'px)'});
 }
 
 recoitHook = function (data) {
@@ -40,7 +50,7 @@ recoitHook = function (data) {
 		}
 		foo.innerHTML = newAns;
 		$("#convo").append(foo);
-		drawRandomShit(mess);
+		// drawRandomShit(mess);
 	}
 };
 
@@ -77,6 +87,9 @@ function fuckALetter() {
 	var c = $("#c" + n);
 	c.css("color", getRandomColor());
 	if(rand(0, 10) % 2){
-		c.css("filter", "blur(1px)");
+		if(rand(0, 10) %2)
+			blur(c, rand(0, 1));
+		else if(rand(0, 10) %2)
+			saturate(c, rand(0, 10));
 	}
 }
