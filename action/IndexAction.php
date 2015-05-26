@@ -23,18 +23,28 @@
 			
 			if (empty($this->error)) {
 				$this->key = Connection::login($_POST["usr"], $_POST["pwd"]);
-				echo $this->key;
 				if ($this->soapClient->fault) {
 					$this->error = "(" . $this->soapClient->faultcode . ") " . $this->soapClient->faultstring;
 				} else {
 					$_SESSION["clef"] = $this->key;
 					$_SESSION["theme"] = $_POST["theme"]; // really needed?
                     $_SESSION["usr"] = $_POST["usr"];
-					header('Location: chat.php'); 
-					exit();
+                    if($this->getError() == "correct"){
+                        header('Location: chat.php');
+                        exit();
+                    } else {
+                        $this->getError();
+                    }                    
 				}
-			} else {
-				echo "WHhooops";
 			}
 		}
+
+        public function setError() {
+            $this->error = $this->key;
+        }
+
+        public function getError() {
+            $ret = parent::getErrorMess($this->key);
+            return $ret;
+        }
 	}

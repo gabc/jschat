@@ -1,0 +1,17 @@
+* {
+    margin: auto;
+    width: 75%;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#themetxt {
+    float: left;
+    display: inline;
+    width: 150px;
+}
+
+#themeselect {
+    float: right;
+    width: 50%;
+}

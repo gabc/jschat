@@ -1,0 +1,10 @@
+@font-face {
+    font-family: unifont;
+    src: url("../font/unifont.ttf");
+}
+
+* {
+    font-family: unifont;
+    background-color: black;
+    color: orange;
+}

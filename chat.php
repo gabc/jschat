@@ -19,6 +19,7 @@
 		<?php } ?>
 		<link rel="stylesheet" href="css/<?= $_SESSION["theme"] ?>.css">
 		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>
+         <script>var usr = "<?= $_SESSION['usr'] ?>"</script>
 	</head>
 	<body>
 		<?php if ($_SESSION["theme"] !== "three") {?>
@@ -32,8 +33,6 @@
 		<?php if (isset($action->error)) {
 				echo $action->error;
 			  }?>
-		<form class="textin" action="#" onsubmit="envoieMessage(this.text)">
-			<input type="text" autofocus id="inputtext" />
-		</form>
+		<input type="text" autofocus id="inputtext" />
 	</body>
 </html>

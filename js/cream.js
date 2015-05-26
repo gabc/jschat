@@ -3,10 +3,12 @@ var nameInterval;
 
 $(init);
 var canevas;
+var letterCount = 0;
 
 function init () {
-	chatInterval = setInterval(randomLi, 1000);
+	chatInterval = setInterval(randomLi, 2000);
 	// nameInterval = setInterval(randomName, 1000);
+	setInterval(fuckALetter, 500);
 	canevas = $("<canvas/>, {'id': 'canevas'}").width(window.innerWidth).height(window.innerHeight);
     	$("body").append(canevas);
 	canevas.css("z-index", -1);
@@ -15,26 +17,44 @@ function init () {
 }
 
 function randomLi () {
-	var li = rand(1, $("#convo").length);
+	var li = rand(1, $("#convo li").length);
 	li = $("#convo li:nth-child(" + li + ")");
-	li.css("filter", "blur(1px)");
+	// li.css("filter", "blur(1px)");
+	return li;
+}
+
+function getBlur (thing) {
+	return thing.css("filter").match(/\d+/);
 }
 
 recoitHook = function (data) {
-	data = JSON.parse(data);
 	var usr = "";
 	var mess = "";
+	var newAns = "";
 	for(var i = 0; i < data.length; i++) {
 		usr = data[i]["nomUsager"] || "Inconnu";
 		mess = data[i]["message"] || "Message";
-		$("#convo").append(createSaneLi(usr, mess));
+		var foo = createSaneLi(usr, mess);
+		for(var a=0,l=foo.innerHTML.length;a<l;a++){
+			newAns+='<span id="c'+ letterCount++ + '" >'+foo.innerHTML.charAt(a)+'</span>';
+		}
+		foo.innerHTML = newAns;
+		$("#convo").append(foo);
 		drawRandomShit(mess);
 	}
 };
 
 envoitHook = function (txt) {
-	$("#convo").append(createSaneLi("gabc", txt));
-	drawRandomShit($("#inputtext").val());
+	var foo = createSaneLi(usr, txt);
+	var newAns = "<li>";
+	for(var a=0,l=foo.innerHTML.length;a<l;a++){
+		newAns+='<span id="c'+ letterCount++ + '" >'+foo.innerHTML.charAt(a)+'</span>';
+	}
+    	newAns += "</li>";
+	foo.innerHTML = newAns;
+	$("#convo").append(foo);
+	
+	// drawRandomShit($("#inputtext").val());
 	$("#inputtext").val("");
 };
 
@@ -49,5 +69,14 @@ function drawRandomShit (txt) {
 		ctx.fillStyle = col;
 		console.log(x, y);
 		ctx.fillRect(rand(0, x/4), 0, rand(0, x/2), rand(0, y/2));
+	}
+}
+
+function fuckALetter() {
+	var n = rand(0, letterCount);
+	var c = $("#c" + n);
+	c.css("color", getRandomColor());
+	if(rand(0, 10) % 2){
+		c.css("filter", "blur(1px)");
 	}
 }

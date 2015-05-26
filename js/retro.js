@@ -16,7 +16,7 @@ function init() {
 	
 	$("body").css(bodyStyle);
     
-	$("<input type='text' autofocus id='cmd' />").insertAfter($(".textin"));
+	$("<input type='text' autofocus id='cmd' />").insertAfter(input[0]);
 
 	$("#cmd").keyup(function (e) {
 		if (e.keyCode == 13) {
