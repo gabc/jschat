@@ -90,6 +90,6 @@ function fuckALetter() {
 		if(rand(0, 10) %2)
 			blur(c, rand(0, 1));
 		else if(rand(0, 10) %2)
-			saturate(c, rand(0, 10));
+			saturate(c, rand(0, 10)*2);
 	}
 }
