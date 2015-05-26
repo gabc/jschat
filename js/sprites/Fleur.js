@@ -1,0 +1,28 @@
+function Fleur () {
+	this.x = Math.random() * 500;
+	this.y = -10;
+
+	this.yspeed = 1;
+
+	this.element = document.createElement("div");
+	this.element.className = "fleur";
+
+	this.element.style.position = "absolute";
+	this.element.style.left = this.x + 'px';
+	this.element.style.top = this.y + 'px';
+
+	document.body.appendChild(this.element);
+}
+
+Fleur.prototype.tick = function () {
+	this.y += this.yspeed;
+
+	this.element.style.top = this.y + "px";
+
+	if (this.y < 600)
+		return true;
+	else {
+		this.element.style.display = "none";
+		return false;
+	}
+};

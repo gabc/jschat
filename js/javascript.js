@@ -1,14 +1,10 @@
 var chatUrl = "http://www.skizzk.fr/~zag/chat/";
 
 $(function () {
-	setInterval(tick, 1200);
+	setInterval(recoitMessage, 1200);
 	$("#btngo").click(envoieMessage);
 	$("#inputtext").keyup(activeInput);
 });
-
-function tick () {
-	recoitMessage();
-}
 
 function activeInput (char) {
 	if (char.keyCode === 13){

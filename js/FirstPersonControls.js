@@ -69,7 +69,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	};
 
 	this.onMouseMove = function ( event ) {
-		console.log(this.mouseX);
+		// console.log(this.mouseX);
 		if (-30 >= event.pageX && event.pageX <= 30){
 			this.mouseX = 0;
 			return;

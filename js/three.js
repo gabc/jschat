@@ -42,6 +42,8 @@ function initvar () {
 	plane = new THREE.Mesh( geometry, material );
 	controls = new THREE.FirstPersonControls(camera);
 
+	// camera.position.x = -1;
+	camera.rotation.z = -1;
 	camera.position.y = 3;
 	controls.lookSpeed = 0.075;
 	controls.noFly = false;
@@ -70,7 +72,7 @@ function showoption () {
 }
 
 function textinsert () {
-	$(".textin").css("display", "block");
+	$("#inputtext").css("display", "block");
 	$(document).off("keyup");
 	$(document).off("keydown");
 }
@@ -105,40 +107,44 @@ function fullstop () {
 }
 
 function keyboarddown (event) {
-	var key = event.key;
+	var key = event.keyCode;
 	switch (key) {
-	case 'w':
+	case 87: // 'w'
+		console.log('yaye');
 		accelerate();
 		break;
-	case 's':
+	case 83: // 's'
 		deccelerate();
 		break;
-	case 'a':
+	case 65: // 'a'.charCodeAt(0):
 		leftAccel();
 		break;
-	case 'd':
+	case 68: //'d'.charCodeAt(0):
 		rightAccel();
 		break;
 	}
 }
 
 function keyboardup (event) {
-	var key = event.key;
+	var key = event.keyCode;
 	switch (key) {
-	case 'o':
+	case 79: //'o'.charCodeAt(0):
 		showoption();
 		break;
-	case 't':
+	case 84: //'t'.charCodeAt(0):
 		textinsert();
 		break;
-	case ' ':	// Space..?
+	case 32: //' '.charCodeAt(0):	// Space..?
 		fire();
 		break;
-	case 'x':
+	case 88: //'x'.charCodeAt(0):
 		fullstop();
 		break;
-	case 'f':
+	case 'f'.charCodeAt(0):
 		console.log('f');
+		break;
+	case 27: // ESC
+		quitte();
 		break;
 	}
 }
@@ -167,17 +173,12 @@ function newtext (txt) {
 
 var envoitHook = function (data) {
 	newtext("gabc: " + data);
-	$(".textin").css("display", "none");
+	$("#inputtext").css("display", "none");
 	$(document).keyup(keyboardup);
 	$(document).keydown(keyboarddown);
 };
 
 var recoitHook = function (data) {
-	try {
-		data = JSON.parse(data);
-	} catch (e) {
-		console.log(data);
-	}
 	var usr = "";
 	var mess = "";
 	for(var i = 0; i < data.length; i++) {
