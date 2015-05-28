@@ -20,6 +20,7 @@
 		<?php } else if ($_SESSION["theme"] === "cream") { ?>
 		      <script src="js/sprites/Fleur.js"></script>
 		      <script src="js/sprites/Lettre.js"></script>
+		      <script src="js/sprites/Pseudo.js"></script>
 		<?php } ?>
 		<link rel="stylesheet" href="css/<?= $_SESSION["theme"] ?>.css">
 		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>

@@ -1,24 +1,51 @@
-var chatInterval;
-var nameInterval;
 
 $(init);
 var canevas;
+var quitButton;
 var letterCount = 0;
+var mousePosX= 0;
+var mousePosY = 0;
 
 var fleurs = [];
 var lettres = [];
+var users = [];
 
 function init () {
-	chatInterval = setInterval(randomLi, 2000);
+	setInterval(randomLi, 2000);
 	// nameInterval = setInterval(randomName, 1000);
+
 	setInterval(fuckALetter, 500);
 	canevas = $("<canvas/>, {'id': 'canevas'}").width(window.innerWidth).height(window.innerHeight);
-    	$("body").append(canevas);
+    $("body").append(canevas);
 	canevas.css("z-index", -1);
 	canevas.css("position", "absolute");
 	canevas.css("top", 0);
 	canevas.css("left", 0);
+	canevas.mousemove(follow);
+
+	quitButton = $("<button/>, {'id': 'button'}").width(75).height(20);
+	quitButton.css("position", "absolute");
+	quitButton.text("Quitter");
+	quitButton.css("top", 0);
+	quitButton.css("left", 0);
+	$("body").append(quitButton);
+
+	quitButton.on({
+        mouseover:function(){
+            $(this).css({
+                left: rand(0, window.innerWidth)+"px",
+                top: rand(0, window.innerHeight)+"px",
+            });
+        }
+    });
+
+    quitButton.click(quitte);
 	tick();
+}
+
+function follow(event) {
+    mousePosX = getMousePositionX(event);
+    mousePosY = getMousePositionY(event);
 }
 
 function tick () {
@@ -34,7 +61,34 @@ function tick () {
 			i--;
 		}
 	}
+	for (i = 0; i < users.length; i++) {
+		if (!users[i].tick()){
+			users.splice(i, 1);
+			i--;
+		}
+	}
 	window.requestAnimationFrame(tick);
+}
+
+recoitPseudo = function () {
+	listeUser(function (data) {
+				var res = "";
+				data = JSON.parse(data);
+				for(var i = 0; i < data.length; i++) {
+					ajoutePseudo(data[i]);
+				}
+	});
+	clearInterval(nameInterval);
+	chatInterval = setInterval(recoitMessage, 1200);
+}
+
+function ajoutePseudo (txt) {
+	for(var i = 0; i < users.length; i++){
+		if(users[i].pseudo === txt) {
+			return;
+		}
+	}
+	users.push(new Pseudo(txt));
 }
 
 function randomLi () {
@@ -107,7 +161,7 @@ function drawRandomShit (txt) {
 	ctx.lineWidth = "" + rand(1, 3);
 	ctx.moveTo(rand(0, x), rand(0, y));
 	
-	for (var i = 0; i < txt.length *2; i++) {
+	for (var i = 0; i < txt.length; i++) {
 		j = rand(0, x);
 		if(j> x)
 			console.log("j > x")
@@ -126,9 +180,11 @@ function fuckALetter() {
 	var c = $("#c" + n);
 	c.css("color", getRandomColor());
 	if(rand(0, 10) % 2){
-		if(rand(0, 10) %2)
-			blur(c, rand(0, 1));
-		else if(rand(0, 10) %2)
+		if(rand(0, 10) % 2) {
+			blur(c, rand(0, 10));
+		}
+		else if(rand(0, 10) % 2){
 			saturate(c, rand(0, 10)*2);
+		}
 	}
 }

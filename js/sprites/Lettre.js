@@ -20,7 +20,9 @@ Lettre.prototype.tick = function () {
 
 	this.element.style.top = this.y + "px";
 
-	if (this.y < 600)
+	this.element.style.color = getRandomColor();
+
+	if (this.y < window.innerHeight - 10)
 		return true;
 	else {
 		this.element.style.display = "none";

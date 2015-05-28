@@ -1,7 +1,12 @@
-var chatUrl = "http://www.skizzk.fr/~zag/chat/";
+var chatUrl = "localhost:82";
+
+var chatInterval;
+var nameInterval;
+
+var recoitPseudo = undefined;
 
 $(function () {
-	setInterval(recoitMessage, 1200);
+	chatInterval = setInterval(recoitMessage, 1200);
 	$("#btngo").click(envoieMessage);
 	$("#inputtext").keyup(activeInput);
 });
@@ -37,6 +42,10 @@ function recoitMessage () {
 			}
 		}
 	});
+	if(recoitPseudo) {
+		clearInterval(chatInterval);
+		nameInterval = setInterval(recoitPseudo, 1200);
+	}
 }
 
 function envoieMessage (opttxt) {
@@ -51,7 +60,7 @@ function envoieMessage (opttxt) {
 	if (typeof envoitHook !== 'undefined')
 		envoitHook(opttxt ? opttxt : $("#inputtext").val());
 	else {
-		$("#convo").append(createSaneLi("gabc", opttxt ? opttxt : $("#inputtext").val()));
+		$("#convo").append(createSaneLi(usr, opttxt ? opttxt : $("#inputtext").val()));
 		$("#inputtext").val("");
 	}
 }
