@@ -172,7 +172,7 @@ function newtext (txt) {
 }
 
 var envoitHook = function (data) {
-	newtext("gabc: " + data);
+	newtext(usr + ": " + data);
 	$("#inputtext").css("display", "none");
 	$(document).keyup(keyboardup);
 	$(document).keydown(keyboarddown);

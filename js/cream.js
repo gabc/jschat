@@ -10,13 +10,15 @@ var fleurs = [];
 var lettres = [];
 var users = [];
 
+var mus = ["pwn-monkey.mp3"];
+
 function init () {
 	setInterval(randomLi, 2000);
 	// nameInterval = setInterval(randomName, 1000);
 
 	setInterval(fuckALetter, 500);
 	canevas = $("<canvas/>, {'id': 'canevas'}").width(window.innerWidth).height(window.innerHeight);
-    $("body").append(canevas);
+	$("body").append(canevas);
 	canevas.css("z-index", -1);
 	canevas.css("position", "absolute");
 	canevas.css("top", 0);
@@ -37,15 +39,23 @@ function init () {
                 top: rand(0, window.innerHeight)+"px",
             });
         }
-    });
+	});
 
-    quitButton.click(quitte);
+	$("<audio src='mus/" + mus[rand(0, mus.length)] + "' controls id='mus'>").insertAfter($("body"));
+	$("<audio src='mus/toastie.mp3' controls id='sound'>").insertAfter($("body"));
+
+	document.getElementById("mus").play();
+	quitButton.click(quitte);
 	tick();
 }
 
 function follow(event) {
-    mousePosX = getMousePositionX(event);
-    mousePosY = getMousePositionY(event);
+	mousePosX = getMousePositionX(event);
+	mousePosY = getMousePositionY(event);
+
+	for (i = 0; i < users.length; i++) {
+		users[i].distance += 0.5;
+	}	
 }
 
 function tick () {
@@ -127,6 +137,8 @@ recoitHook = function (data) {
 		$("#convo").append(foo);
 		drawRandomShit(mess);
 	}
+	if(data.length > 0)
+		document.getElementById("sound").play();
 };
 
 envoitHook = function (txt) {

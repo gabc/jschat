@@ -3,3 +3,11 @@ canvas {
     width: 80%;
     border: 2px double red;
 }
+
+#mus {
+    display: none;
+}
+
+#sound {
+    display: none;
+}

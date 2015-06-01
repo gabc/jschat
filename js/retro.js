@@ -17,7 +17,8 @@ function init() {
 	$("body").css(bodyStyle);
     
 	$("<input type='text' autofocus id='cmd' />").insertAfter(input[0]);
-
+	$("<br>").insertAfter(input[0]);
+	$("<span>Commande: </span>").insertBefore($("#cmd"));
 	$("#cmd").keyup(function (e) {
 		if (e.keyCode == 13) {
 			execcmd();
@@ -26,7 +27,6 @@ function init() {
 }
 
 recoitHook = function (data) {
-	data = JSON.parse(data);
 	var usr = "";
 	var mess = "";
 	for(var i = 0; i < data.length; i++) {

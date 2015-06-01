@@ -38,6 +38,6 @@
 		<?php if (isset($action->error)) {
 				echo $action->error;
 			  }?>
-		<input type="text" autofocus id="inputtext" />
+		<input type="text" id="inputtext" <?php if($_SESSION["theme"] == "retro") echo "readonly"; else echo "autofocus"; ?>/>
 	</body>
 </html>

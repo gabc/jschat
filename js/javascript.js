@@ -1,4 +1,4 @@
-var chatUrl = "localhost:82";
+var chatUrl = "/~zag/chat";
 
 var chatInterval;
 var nameInterval;
@@ -67,6 +67,7 @@ function envoieMessage (opttxt) {
 
 function iskick () {
 	location.replace(chatUrl);
+	console.log("Changement!");
 }
 
 function createSaneLi (usr, mess) {

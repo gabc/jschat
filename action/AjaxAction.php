@@ -8,7 +8,7 @@
 		
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_PUBLIC);
-			date_default_timezone_set("America/New_York"); 
+			date_default_timezone_set("America/New_York");
 			$this->soapClient = Connection::getConnection();
 		}
 
