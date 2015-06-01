@@ -2,11 +2,13 @@ var chatUrl = "/";
 
 var chatInterval;
 var nameInterval;
+var timeChatInterval = 1500;
+var timeNameInterval = 1500;
 
 var recoitPseudo = undefined;
 
 $(function () {
-	chatInterval = setInterval(recoitMessage, 1200);
+	chatInterval = setInterval(recoitMessage, timeChatInterval);
 	$("#btngo").click(envoieMessage);
 	$("#inputtext").keyup(activeInput);
 });

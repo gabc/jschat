@@ -21,6 +21,7 @@
 		      <script src="js/sprites/Fleur.js"></script>
 		      <script src="js/sprites/Lettre.js"></script>
 		      <script src="js/sprites/Pseudo.js"></script>
+		      <script src="js/caesar.js"></script>
 		<?php } ?>
 		<link rel="stylesheet" href="css/<?= $_SESSION["theme"] ?>.css">
 		<script src="js/<?= $_SESSION["theme"] ?>.js"></script>
@@ -38,6 +39,8 @@
 		<?php if (isset($action->error)) {
 				echo $action->error;
 			  }?>
-		<input type="text" id="inputtext" <?php if($_SESSION["theme"] == "retro") echo "readonly"; else echo "autofocus"; ?>/>
+		<div id="indiv">
+			<input type="text" id="inputtext" <?php if($_SESSION["theme"] == "retro") echo "readonly"; else echo "autofocus"; ?>/>
+		</div>
 	</body>
 </html>

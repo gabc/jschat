@@ -50,7 +50,16 @@ Pseudo.prototype.tick = function () {
 	}
 
 	this.y += this.yspeed * this.distance;
+	if(this.y > window.innerHeight)
+		this.y = window.innerHeight/2;
+	if(this.y < 0)
+		this.y = window.innerHeight/2;
+
 	this.x += this.xspeed * this.distance;
+	if(this.x > window.innerWidth)
+		this.x = window.innerWidth/2;
+	if(this.x < 0)
+		this.x = window.innerWidth/2;
 
 	this.distance--;
 	if(this.distance < 1)

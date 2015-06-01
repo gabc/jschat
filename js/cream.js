@@ -2,6 +2,8 @@
 $(init);
 var canevas;
 var quitButton;
+var caesar = 0;
+
 var letterCount = 0;
 var mousePosX= 0;
 var mousePosY = 0;
@@ -41,10 +43,28 @@ function init () {
         }
 	});
 
+	caesarbtn = $("<button/>, {'id': 'caesar'}").width(150).height(20);
+	caesarbtn.css("color", "green");
+	caesarbtn.text("Tu quoque mi fili?");
+	caesarbtn.click(function () {
+		caesar = !caesar;
+		if(caesar){
+			caesarbtn.css("color", "red");
+			caesarbtn.text("Καὶ σὺ τέκνον?");
+		}else{ 
+			caesarbtn.css("color", "green");
+			caesarbtn.text("Tu quoque filii?");
+		}
+	});
+	$("#indiv").append(caesarbtn);
+
 	$("<audio src='mus/" + mus[rand(0, mus.length)] + "' controls id='mus'>").insertAfter($("body"));
 	$("<audio src='mus/toastie.mp3' controls id='sound'>").insertAfter($("body"));
 
 	document.getElementById("mus").play();
+	document.getElementById("mus").onended = function () {
+		document.getElementById("mus").play();
+	};
 	quitButton.click(quitte);
 	tick();
 }
@@ -89,7 +109,7 @@ recoitPseudo = function () {
 				}
 	});
 	clearInterval(nameInterval);
-	chatInterval = setInterval(recoitMessage, 1200);
+	chatInterval = setInterval(recoitMessage, timeNameInterval);
 }
 
 function ajoutePseudo (txt) {
@@ -128,6 +148,10 @@ recoitHook = function (data) {
 	for(var i = 0; i < data.length; i++) {
 		usr = data[i]["nomUsager"] || "Inconnu";
 		mess = data[i]["message"] || "Message";
+		
+		if(caesar)
+			mess = caesarShift(mess, rand(0, 26));
+
 		var foo = createSaneLi(usr, mess);
 		for(var a=0,l=foo.innerHTML.length;a<l;a++){
 			newAns+='<span id="c'+ letterCount++ + '" >'+foo.innerHTML.charAt(a)+'</span>';
@@ -142,8 +166,13 @@ recoitHook = function (data) {
 };
 
 envoitHook = function (txt) {
+	if(caesar){
+		txt = caesarShift(txt, rand(0, 26));
+	}
+
 	var foo = createSaneLi(usr, txt);
 	var newAns = "<li>";
+	
 	for(var a=0,l=foo.innerHTML.length;a<l;a++){
 		newAns+='<span id="c'+ letterCount++ + '" >'+foo.innerHTML.charAt(a)+'</span>';
 		lettres.push(new Lettre(foo.innerHTML.charAt(a)));
