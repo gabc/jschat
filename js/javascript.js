@@ -1,4 +1,4 @@
-var chatUrl = "/~zag/chat/";
+var chatUrl = "/";
 
 var chatInterval;
 var nameInterval;
