@@ -84,6 +84,8 @@ function follow(event) {
 	// Avec ça la vitesse des pseudos augmentent quand l'utilisateur bouge la souris
 	for (i = 0; i < users.length; i++) {
 		users[i].distance += 0.1;
+		if(users[i].distance == 10)
+			users[i].distance = 10;
 	}	
 }
 
