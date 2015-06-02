@@ -7,7 +7,7 @@
     font-family: unifont;
 }
 
-div {
+#divconv {
     height: 25em;
     width: 80ex;
     overflow: scroll;
