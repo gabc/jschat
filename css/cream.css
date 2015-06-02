@@ -1,7 +1,10 @@
+body {
+    overflow: hidden;
+}
+
 canvas {
     margin: auto;
     width: 80%;
-    border: 2px double red;
 }
 
 #mus {
@@ -10,4 +13,8 @@ canvas {
 
 #sound {
     display: none;
+}
+
+#divconv {
+    overflow: scroll;
 }

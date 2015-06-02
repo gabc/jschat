@@ -1,4 +1,4 @@
-var chatUrl = "/";
+var chatUrl = "/~zag/chat/";
 
 var chatInterval;
 var nameInterval;
@@ -46,7 +46,7 @@ function recoitMessage () {
 	});
 	if(recoitPseudo) {
 		clearInterval(chatInterval);
-		nameInterval = setInterval(recoitPseudo, 1200);
+		nameInterval = setInterval(recoitPseudo, timeNameInterval);
 	}
 }
 

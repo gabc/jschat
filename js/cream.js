@@ -19,6 +19,9 @@ function init () {
 	//setInterval(randomLi, 2000);
 	setInterval(fuckALetter, 500);
 
+	$("#divconv").css("width", window.innerWidth - 15);
+	$("#divconv").css("height", window.innerHeight - 50);
+	
 	// On ajoute le canvas.
 	canevas = $("<canvas/>, {'id': 'canevas'}").width(window.innerWidth).height(window.innerHeight);
 	$("body").append(canevas);
