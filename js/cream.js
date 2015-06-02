@@ -32,6 +32,7 @@ function init () {
 	canevas.mousemove(follow);
 
 	$("body").mousemove(follow);
+	$("#divconv").mousemove(follow);
 	// On ajoute le 'bouton' de quit
 	quitButton = $("<button/>, {'id': 'button'}").width(75).height(20);
 	quitButton.css("position", "absolute");

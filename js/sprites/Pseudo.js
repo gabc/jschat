@@ -9,7 +9,7 @@ function Pseudo (pseudo) {
 	this.yvelocity = 0.2;
 
 	this.angle = 0;	
-	this.angleRot = rand(0, Math.PI);
+	this.angleRot = 2;
 
 	this.distance = 0.1;
 	
@@ -38,15 +38,15 @@ Pseudo.prototype.tick = function () {
 		this.yspeed = -7;
 	
 	if (mousePosX > this.x) {
-		this.xspeed += this.xvelocity  * Math.sin(this.angle);
+		this.xspeed += this.xvelocity  //* Math.sin(this.angle);
 	} else if (mousePosX < this.x) {
-		this.xspeed -= this.xvelocity  * Math.sin(this.angle);
+		this.xspeed -= this.xvelocity  //* Math.sin(this.angle);
 	}
 	
 	if (mousePosY > this.y) {
-		this.yspeed += this.yvelocity  * Math.cos(this.angle);
+		this.yspeed += this.yvelocity  //* Math.cos(this.angle);
 	} else if (mousePosY < this.y){
-		this.yspeed -= this.yvelocity  * Math.cos(this.angle);
+		this.yspeed -= this.yvelocity  //* Math.cos(this.angle);
 	}
 
 	this.y += this.yspeed * this.distance;
@@ -70,7 +70,7 @@ Pseudo.prototype.tick = function () {
 		this.angle = 0;
 	
 	rotateElement(this.element, this.angle);
-
+	
 	this.element.style.left = this.x + "px";
 	this.element.style.top = this.y + "px";
 
