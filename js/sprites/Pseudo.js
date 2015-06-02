@@ -38,15 +38,15 @@ Pseudo.prototype.tick = function () {
 		this.yspeed = -7;
 	
 	if (mousePosX > this.x) {
-		this.xspeed += this.xvelocity * Math.sin(this.angle);
+		this.xspeed += this.xvelocity  * Math.sin(this.angle);
 	} else if (mousePosX < this.x) {
-		this.xspeed -= this.xvelocity * Math.sin(this.angle);
+		this.xspeed -= this.xvelocity  * Math.sin(this.angle);
 	}
 	
 	if (mousePosY > this.y) {
-		this.yspeed += this.yvelocity * Math.cos(this.angle);
+		this.yspeed += this.yvelocity  * Math.cos(this.angle);
 	} else if (mousePosY < this.y){
-		this.yspeed -= this.yvelocity * Math.cos(this.angle);
+		this.yspeed -= this.yvelocity  * Math.cos(this.angle);
 	}
 
 	this.y += this.yspeed * this.distance;
@@ -61,7 +61,7 @@ Pseudo.prototype.tick = function () {
 	if(this.x < 0)
 		this.x = window.innerWidth/2;
 
-	this.distance--;
+	this.distance -= 0.2;
 	if(this.distance < 1)
 		this.distance = 1;
 	

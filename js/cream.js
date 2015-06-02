@@ -31,6 +31,7 @@ function init () {
 	canevas.css("left", 0);
 	canevas.mousemove(follow);
 
+	$("body").mousemove(follow);
 	// On ajoute le 'bouton' de quit
 	quitButton = $("<button/>, {'id': 'button'}").width(75).height(20);
 	quitButton.css("position", "absolute");
@@ -80,10 +81,9 @@ function init () {
 function follow(event) {
 	mousePosX = getMousePositionX(event);
 	mousePosY = getMousePositionY(event);
-	
 	// Avec ça la vitesse des pseudos augmentent quand l'utilisateur bouge la souris
 	for (i = 0; i < users.length; i++) {
-		users[i].distance += 0.5;
+		users[i].distance += 0.1;
 	}	
 }
 
