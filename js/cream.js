@@ -12,13 +12,14 @@ var fleurs = [];
 var lettres = [];
 var users = [];
 
+// Normallement j'aimerais en avoir plus, mais 30mo c'est pas gros.
 var mus = ["pwn-monkey.mp3"];
 
 function init () {
-	setInterval(randomLi, 2000);
-	// nameInterval = setInterval(randomName, 1000);
-
+	//setInterval(randomLi, 2000);
 	setInterval(fuckALetter, 500);
+
+	// On ajoute le canvas.
 	canevas = $("<canvas/>, {'id': 'canevas'}").width(window.innerWidth).height(window.innerHeight);
 	$("body").append(canevas);
 	canevas.css("z-index", -1);
@@ -27,6 +28,7 @@ function init () {
 	canevas.css("left", 0);
 	canevas.mousemove(follow);
 
+	// On ajoute le 'bouton' de quit
 	quitButton = $("<button/>, {'id': 'button'}").width(75).height(20);
 	quitButton.css("position", "absolute");
 	quitButton.text("Quitter");
@@ -43,6 +45,7 @@ function init () {
         }
 	});
 
+	// On ajoute le bouton pour toggler ROT13
 	caesarbtn = $("<button/>, {'id': 'caesar'}").width(150).height(20);
 	caesarbtn.css("color", "green");
 	caesarbtn.text("Tu quoque mi fili?");
@@ -50,17 +53,19 @@ function init () {
 		caesar = !caesar;
 		if(caesar){
 			caesarbtn.css("color", "red");
-			caesarbtn.text("Καὶ σὺ τέκνον?");
+			caesarbtn.text("Καὶ σὺ τέκνον?"); // La version originale en Grec.
 		}else{ 
 			caesarbtn.css("color", "green");
-			caesarbtn.text("Tu quoque filii?");
+			caesarbtn.text("Tu quoque filii?"); // Le Latin ça se lit mieux que le Grec.
 		}
 	});
 	$("#indiv").append(caesarbtn);
 
+	// On ajoute les audios
 	$("<audio src='mus/" + mus[rand(0, mus.length)] + "' controls id='mus'>").insertAfter($("body"));
 	$("<audio src='mus/toastie.mp3' controls id='sound'>").insertAfter($("body"));
 
+	// Je veux que ça commence et que ça finisse jamais.
 	document.getElementById("mus").play();
 	document.getElementById("mus").onended = function () {
 		document.getElementById("mus").play();
@@ -72,13 +77,15 @@ function init () {
 function follow(event) {
 	mousePosX = getMousePositionX(event);
 	mousePosY = getMousePositionY(event);
-
+	
+	// Avec ça la vitesse des pseudos augmentent quand l'utilisateur bouge la souris
 	for (i = 0; i < users.length; i++) {
 		users[i].distance += 0.5;
 	}	
 }
 
 function tick () {
+	// On refresh tout les trucs.
 	for (i = 0; i < lettres.length; i++) {
 		if (!lettres[i].tick()){
 			lettres.splice(i, 1);
@@ -131,6 +138,7 @@ function getBlur (thing) {
 	return thing.css("filter").match(/\d+/);
 }
 
+// Parce que Chrome et Firefox sont pas pareils.
 function blur (thing, amount) {
 	thing.css({'-webkit-filter' : 'blur('+amount+'px)',
 		  'filter' : 'blur('+amount+'px)'})
@@ -153,7 +161,9 @@ recoitHook = function (data) {
 			mess = caesarShift(mess, rand(0, 26));
 
 		var foo = createSaneLi(usr, mess);
-		for(var a=0,l=foo.innerHTML.length;a<l;a++){
+		
+		// C'est moche mais j'ai pas vraiment trouvé mieux
+		for(var a = 0, l = foo.innerHTML.length; a < l; a++){
 			newAns+='<span id="c'+ letterCount++ + '" >'+foo.innerHTML.charAt(a)+'</span>';
 			lettres.push(new Lettre(foo.innerHTML.charAt(a)));
 		}

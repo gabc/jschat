@@ -37,6 +37,10 @@ recoitHook = function (data) {
 	$("#divconv").scrollTop($("#divconv")[0].scrollHeight);
 }
 
+/*
+  J'implémente un subset des commandes de Sam
+  http://sam.cat-v.org/
+*/
 function execcmd() {
 	cmd = $("#cmd").val();
 	var tmp;
